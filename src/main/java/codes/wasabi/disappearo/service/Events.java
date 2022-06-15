@@ -8,6 +8,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
@@ -23,26 +24,20 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
 
 public class Events implements Listener {
 
     @EventHandler
     public void onPlace(HangingPlaceEvent event) {
-        Disappearo.logger.log(Level.INFO, "DEBUG: Hanging entity placed");
         Hanging h = event.getEntity();
         if (h instanceof ItemFrame) {
-            Disappearo.logger.log(Level.INFO, "DEBUG: Hanging is item frame");
             Player ply = event.getPlayer();
             if (ply != null) {
-                Disappearo.logger.log(Level.INFO, "DEBUG: Hanging broken by player");
                 ItemStack is = ply.getActiveItem();
                 boolean replace = (is == null);
                 if (!replace) replace = is.getType().equals(Material.AIR);
                 if (replace) is = ply.getInventory().getItemInMainHand();
-                Disappearo.logger.log(Level.INFO, "DEBUG: Evaluating item in hand: " + is.getType());
                 if (InvisibleFrames.isInvisible(is)) {
-                    Disappearo.logger.log(Level.INFO, "DEBUG: Placing invisible frame");
                     InvisibleFrames.setInvisible(h, true);
                 }
             }
@@ -54,7 +49,6 @@ public class Events implements Listener {
         Hanging h = event.getEntity();
         if (h instanceof ItemFrame) {
             if (InvisibleFrames.isInvisible(h)) {
-                Disappearo.logger.log(Level.INFO, "DEBUG: Breaking invisible frame");
                 event.setCancelled(true);
                 h.remove();
                 ItemStack is = new ItemStack((h instanceof GlowItemFrame ? Material.GLOW_ITEM_FRAME : Material.ITEM_FRAME), 1);
@@ -66,7 +60,7 @@ public class Events implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerBreak(HangingBreakByEntityEvent event) {
         Hanging h = event.getEntity();
         if (h instanceof ItemFrame frame) {
