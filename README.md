@@ -1,5 +1,5 @@
 # Disappearo
-A simple plugin for Paper servers that allow creating invisible item frames\
+A simple plugin for Paper servers that allows creating invisible item frames\
 Supports 1.17 - 1.19
 
 ## Installation
