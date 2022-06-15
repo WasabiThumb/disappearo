@@ -1,0 +1,19 @@
+name: Disappearo
+version: '${project.version}'
+main: codes.wasabi.disappearo.Disappearo
+api-version: 1.17
+authors: [ Wasabi_Thumbs ]
+description: Enables you to create invisible item frames
+website: http://wasabi.codes/
+prefix: dp
+permissions:
+  dp.wand:
+    description: Allows creation and usage of the wand
+    default: false
+  dp.change:
+    description: Allows usage of /dp change
+    default: true
+commands:
+  disappearo:
+    description: Disappearo main command
+    aliases: [ dp ]

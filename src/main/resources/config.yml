@@ -1,0 +1,7 @@
+prevent-duplicate-wands: true
+enforce-wand-usage-perms: true
+deny-wand-in-crafting: true
+lang:
+  invisible-item-frame: <color:#38ffdb>Invisible</color> Item Frame
+  invisible-glow-item-frame: <color:#38ffdb>Invisible</color> Glow Item Frame
+  wand: <rainbow>Disappearo Wand</rainbow>
