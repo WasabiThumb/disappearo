@@ -8,6 +8,8 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentTarget;
 
 public final class Wands {
 
@@ -24,6 +26,8 @@ public final class Wands {
         ItemStack is = new ItemStack(Material.STICK, 1);
         is.editMeta((ItemMeta meta) -> {
             meta.displayName(Disappearo.config.lang.wand);
+            meta.addEnchant(Enchantment.UNBREAKING, 1, false);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             PersistentDataContainer pdc = meta.getPersistentDataContainer();
             pdc.set(Keys.WAND_FLAG, PersistentDataType.BYTE, (byte) 1);
         });
